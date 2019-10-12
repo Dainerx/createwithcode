@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-  <!-- Loading notice -->
-  <style>
+    <!-- Loading notice -->
+    <style>
         #loading {
             position: absolute;
             top: 40%;
@@ -16,10 +17,12 @@
             animation: loading 2s alternate infinite;
             border: 1px solid #000;
         }
+
         @keyframes loading {
             from {
                 background-color: #CCC;
             }
+
             to {
                 background-color: #0C0;
             }
@@ -41,7 +44,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="lib/cm/python.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="lib/lib.js"></script>
+    <script src="lib/simulator.js"></script>
     <script src="lib/skulpt/skulpt.min.js"></script>
     <script src="lib/skulpt/skulpt-stdlib.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -56,12 +59,16 @@
 <body>
 
 
-	<!-- Animated link-->
+    <!-- Animated link-->
     <div>
-    To save and share your code please visit <a href="https://create.withcode.uk" target="_blank">create.withcode.uk</a>. Tutorials and resources available at <a href="http://blog.withcode.uk" target="_blank">blog.withcode.uk</a>
+        To save and share your code please visit <a href="https://create.withcode.uk"
+            target="_blank">create.withcode.uk</a>. Tutorials and resources available at <a
+            href="http://blog.withcode.uk" target="_blank">blog.withcode.uk</a>
 
         <a class="nounderline" href="https://create.withcode.uk" target="_blank">
-        <h1 id="title" onmouseover="animateTitle('create.withcode.uk', 'title_text')"><span class="brackets">{</span><span id="title_text">withcode.uk</span><span class="brackets">}</span></h1>
+            <h1 id="title"><span
+                    class="brackets">{</span><span id="title_text">withcode.uk</span><span class="brackets">}</span>
+            </h1>
         </a>
 
 
@@ -88,20 +95,23 @@
         PythonIDE.files['mycode.py'] = 'from microbit import *\ndisplay.scroll("Hello world")';
 
         PythonIDE.currentFile = 'mycode.py';
-        PythonIDE.updateFileTabs();
     </script>
 
-
+    <button id="run_py">RUN NOW</button>
     <div id="hintBar"></div>
     <span id="footer">
 
-	<img alt="Click to show/hide tool buttons" title="Show/hide tools" class="toolButton" src="media/tools.png" id="btn_tools">
-	<img title="Run" alt="Click to run your code" id="btn_run" class="toolButton hiddenButton" src="media/play.png">
-	<img alt="Stop running" title="Stop" class="toolButton hiddenButton" src="media/stop.png" id="btn_stopRunning">
-	<img title="Console" alt="Show python output" id="btn_show_output" class="toolButton hiddenButton" src="media/console.png">
-	<img title="Settings" alt="Customize the screen" id="btn_show_settings" class="toolButton hiddenButton" src="media/settings.png">
-	<img title="Code recovery" alt="Recover your code from a previous session" id="btn_show_recover" class="toolButton hiddenButton" src="media/recover.png">
-</span>
+        <img alt="Click to show/hide tool buttons" title="Show/hide tools" class="toolButton" src="media/tools.png"
+            id="btn_tools">
+        <img title="Run" alt="Click to run your code" id="btn_run" class="toolButton hiddenButton" src="media/play.png">
+        <img alt="Stop running" title="Stop" class="toolButton hiddenButton" src="media/stop.png" id="btn_stopRunning">
+        <img title="Console" alt="Show python output" id="btn_show_output" class="toolButton hiddenButton"
+            src="media/console.png">
+        <img title="Settings" alt="Customize the screen" id="btn_show_settings" class="toolButton hiddenButton"
+            src="media/settings.png">
+        <img title="Code recovery" alt="Recover your code from a previous session" id="btn_show_recover"
+            class="toolButton hiddenButton" src="media/recover.png">
+    </span>
     <div id="recover" title="Recover" style="display:none"></div>
     <div id="dlg" title="mycode.py" style="display:none">
         <div id="output"></div>
@@ -171,11 +181,14 @@
     <script>
         var toolsVisible = false;
 
-		// load python IDE
-        $(function() {
+        // load python IDE
+        $(function () {
             $('#loading').hide();
             $('#holder').show();
             PythonIDE.init();
+            $("#run_py").click(function (e) {
+                PythonIDE.runCode();
+            });
         });
     </script>
 
